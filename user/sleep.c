@@ -10,5 +10,8 @@ int main(int argc, char *argv[]){
         exit();
     }
 
-
+    int sleep_seconds = atoi(argv[1]);
+    sleep(sleep_seconds);
+    exit();
+    return 0;
 }
