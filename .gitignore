@@ -19,5 +19,5 @@ myapi.key
 *-handin.tar.gz
 xv6.out*
 .idea/
-.gitignore
 .vscode
+demo/
