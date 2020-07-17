@@ -26,14 +26,14 @@ int main(int argc,char *argv[]){
         char buf[1]={0};
         write(parent_fd[1],buf,1);
         read(child_fd[0],buf,1);
-        printf("%d: received pong",getpid());
+        printf("%d: received pong\n",getpid());
     }else if(pid==0){
         //child pid
         close(parent_fd[1]);
         close(child_fd[0]);
         char buf[1]={0};
         read(parent_fd[0],buf,1);
-        printf("%d: received ping",getpid());
+        printf("%d: received ping\n",getpid());
         write(child_fd[1],buf,1);
     }
     exit();
