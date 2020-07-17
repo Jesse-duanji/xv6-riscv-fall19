@@ -4,6 +4,6 @@
 
 int main(int argc,char* argv[]){
     int time=uptime();
-    printf("uptime: %d",time);
+    printf("uptime: %d\n",time);
     exit();
 }
