@@ -3,6 +3,7 @@
 #include "user/user.h"
 
 int main(int argc,char* argv[]){
-    uptime();
+    int time=uptime();
+    printf("uptime: %d",time);
     exit();
 }
