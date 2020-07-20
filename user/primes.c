@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     if (pid > 0)
     {
         printf("prime %d\n", 2);
+        close(fd[1]);
         //parent process
         for (int i = 3; i <= 35; i++)
         {
@@ -22,6 +23,7 @@ int main(int argc, char *argv[])
     else if (pid == 0)
     {
         //child process
+        close(fd[0]);
         int res;
         read(fd[1],&res,4);
         printf("read process %d",res);
