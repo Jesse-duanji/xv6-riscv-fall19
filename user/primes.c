@@ -26,4 +26,5 @@ int main(int argc, char *argv[])
         read(fd[1],&res,4);
         printf("read process %d",res);
     }
+    exit();
 }
