@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
         {
             if (i % 2 != 0)
             {
+                printf("prepare to write:%d",i);
                 write(fd[0],&i,4);
             }
         }
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
         close(fd[0]);
         int res;
         read(fd[1],&res,4);
-        printf("read process %d",res);
+        printf("read process %d\n",res);
     }
     exit();
 }
