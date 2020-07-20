@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
             if (i % 2 != 0)
             {
                 printf("prepare to write:%d\n", i);
-                write(fd[0], &i, 4);
+                write(fd[1], &i, 4);
             }
         }
         close(fd[0]);
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         //child process
         close(fd[0]);
         int res;
-        int read_res=read(fd[1], &res, 4);
+        int read_res=read(fd[0], &res, 4);
         printf("read res:%d",read_res);
         // while (read(fd[1], &res, 4) > 0)
         // {
