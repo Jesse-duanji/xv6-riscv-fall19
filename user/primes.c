@@ -16,18 +16,21 @@ int main(int argc, char *argv[])
         {
             if (i % 2 != 0)
             {
-                printf("prepare to write:%d",i);
-                write(fd[0],&i,4);
+                printf("prepare to write:%d", i);
+                write(fd[0], &i, 4);
             }
         }
+        close(fd[0]);
     }
     else if (pid == 0)
     {
         //child process
         close(fd[0]);
         int res;
-        read(fd[1],&res,4);
-        printf("read process %d\n",res);
+        while (read(fd[1], &res, 4) != 0)
+        {
+            printf("read process %d\n", res);
+        }
     }
     exit();
 }
