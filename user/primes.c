@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
         //child process
         close(fd[1]);
         int res;
-        int read_res=read(fd[0], &res, 4);
         while (read(fd[1], &res, 4) > 0)
         {
             printf("read process %d\n", res);
