@@ -41,7 +41,7 @@ void handle_data(int left_fd[2])
         else if (pid == 0)
         {
             //child
-            process(right_fd);
+            handle_data(right_fd);
         }
     }
     else if (read_res == 0)
