@@ -26,7 +26,7 @@ void handle_data(int left_fd[2])
     if(prime_read_res<0){
         return;
     }
-    printf("prime %d", prime);
+    printf("prime %d\n", prime);
 
     int data;
     int read_res = read(left_fd[0], &data, 4);
