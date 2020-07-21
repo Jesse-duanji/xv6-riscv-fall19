@@ -2,19 +2,6 @@
 #include "kernel/stat.h"
 #include "user/user.h"
 
-int main(int argc, char *argv[])
-{
-    int fd[2];
-    pipe(fd);
-    close(fd[0]);
-    for (int i = 2; i <= 35; i++)
-    {
-        write(fd[1], &i, 4);
-    }
-    handle_data(fd);
-    exit();
-}
-
 /**
  * handel data in pipeline
  */
@@ -66,3 +53,17 @@ void handle_data(int left_fd[2])
         printf("read data from pipe error!");
     }
 }
+
+int main(int argc, char *argv[])
+{
+    int fd[2];
+    pipe(fd);
+    close(fd[0]);
+    for (int i = 2; i <= 35; i++)
+    {
+        write(fd[1], &i, 4);
+    }
+    handle_data(fd);
+    exit();
+}
+
