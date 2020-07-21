@@ -11,7 +11,7 @@ void handle_data(int left_fd[2])
     int prime;
     int prime_read_res=read(left_fd[0], &prime, 4);
     if(prime_read_res<0){
-        printf("prime read failed!");
+        printf("prime read failed!\n");
         return;
     }
     printf("prime %d\n", prime);
@@ -38,9 +38,12 @@ void handle_data(int left_fd[2])
                     write(right_fd[1], &data, 4);
                 }
             } while ((read_res = read(left_fd[0], &data, 4)) > 0);
+            // read finished
+            close(left_fd[0]);
         }
         else if (pid == 0)
         {
+            close(left_fd[0]);
             //child
             handle_data(right_fd);
         }
@@ -59,10 +62,9 @@ int main(int argc, char *argv[])
 {
     int fd[2];
     pipe(fd);
-    close(fd[0]);
     for (int i = 2; i <= 35; i++)
     {
-        printf("read to write %d",i);
+        printf("read to write %d\n",i);
         write(fd[1], &i, 4);
     }
     handle_data(fd);
