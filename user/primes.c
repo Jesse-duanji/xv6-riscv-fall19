@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     pipe(fd);
     for (int i = 2; i <= 35; i++)
     {
-        printf("read to write %d\n",i);
+        //printf("read to write %d\n",i);
         write(fd[1], &i, 4);
     }
     handle_data(fd);
