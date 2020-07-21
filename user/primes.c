@@ -36,7 +36,7 @@ void handle_data(int left_fd[2])
                     //write to next process
                     write(right_fd[1], &data, 4);
                 }
-            } while (read_res = read(left_fd[0], &data, 4) > 0);
+            } while ((read_res = read(left_fd[0], &data, 4)) > 0);
         }
         else if (pid == 0)
         {
