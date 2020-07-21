@@ -11,6 +11,7 @@ void handle_data(int left_fd[2])
     int prime;
     int prime_read_res=read(left_fd[0], &prime, 4);
     if(prime_read_res<0){
+        printf("prime read failed!");
         return;
     }
     printf("prime %d\n", prime);
@@ -61,6 +62,7 @@ int main(int argc, char *argv[])
     close(fd[0]);
     for (int i = 2; i <= 35; i++)
     {
+        printf("read to write %d",i);
         write(fd[1], &i, 4);
     }
     handle_data(fd);
