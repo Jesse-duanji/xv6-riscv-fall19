@@ -33,7 +33,6 @@ void find(char *path, char *name)
         //find recursively
         break;
     }
-    exit();
 }
 
 int main(int argc, char *argv[])
@@ -47,4 +46,5 @@ int main(int argc, char *argv[])
     char *name = argv[2];
 
     find(path, name);
+    exit();
 }
