@@ -1,10 +1,11 @@
 #include <kernel/types.h>
 #include <kernel/stat.h>
 #include <user/user.h>
+#include <Kernel/fs.h>
 
 void find(char *path, char *name)
 {
-    printf("find from path:%s", path);
+    printf("find from path:%s\n", path);
     struct stat st;
     int fd;
     if ((fd = open(path, 0)) < 0)
@@ -20,9 +21,10 @@ void find(char *path, char *name)
         close(fd);
         return;
     }
-    printf("dev:%d info:%d type:%d nlink:%d size:%d",st.dev,st.ino,
-        st.type,st.nlink,st.size);
+    printf("dev:%d info:%d type:%d nlink:%d size:%d\n", st.dev, st.ino,
+           st.type, st.nlink, st.size);
 
+    struct dirent de;
     switch (st.type)
     {
     case T_FILE:
@@ -30,7 +32,16 @@ void find(char *path, char *name)
         break;
     case T_DIR:
         //check file
+        if (strcmp(".", path) == 0 || strcmp("..", path) == 0)
+        {
+            printf("not recurse into . and ..");
+            return;
+        }
         //find recursively
+        while (read(fd, &de, sizeof(de)) == sizeof(de))
+        {
+            printf("inum:%d name:%s \n", de.inum, de.name);
+        }
         break;
     }
 }
