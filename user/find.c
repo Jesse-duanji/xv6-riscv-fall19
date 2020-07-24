@@ -28,6 +28,7 @@ void find(char *path, char *name)
     switch (st.type)
     {
     case T_FILE:
+    {
         // compare with name directly
         char *p;
         for (p = path + strlen(path); p >= path && *p != '/'; p--)
@@ -39,7 +40,8 @@ void find(char *path, char *name)
             //equals
             printf("%s\n", path);
         }
-        break;
+    }
+    break;
     case T_DIR:
         //check file
         if (strcmp(".", path) == 0 || strcmp("..", path) == 0)
