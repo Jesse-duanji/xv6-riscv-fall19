@@ -29,6 +29,16 @@ void find(char *path, char *name)
     {
     case T_FILE:
         // compare with name directly
+        char *p;
+        for (p = path + strlen(path); p >= path && *p != '/'; p--)
+            ;
+        p++; //find first character after last slash
+
+        if (strcmp(p, name) == 0)
+        {
+            //equals
+            printf("%s\n", path);
+        }
         break;
     case T_DIR:
         //check file
