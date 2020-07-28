@@ -29,14 +29,14 @@ void find(char *path, char *name)
     {
     case T_FILE:
     {
-        printf("%s is a file\n",path);
+        printf("%s is a file\n", path);
         // compare with name directly
         char *p;
         for (p = path + strlen(path); p >= path && *p != '/'; p--)
             ;
         p++; //find first character after last slash
 
-        printf("p is %s name is %s",p,name);
+        printf("p is %s name is %s", p, name);
 
         if (strcmp(p, name) == 0)
         {
@@ -47,23 +47,24 @@ void find(char *path, char *name)
     break;
     case T_DIR:
         //check file
-        printf("%s is a directory",path);
-        if (strcmp(".", path) == 0 || strcmp("..", path) == 0)
-        {
-            printf("not recurse into . and ..\n");
-            return;
-        }
+        printf("%s is a directory\n", path);
+
         char buf[512];
         //find recursively
         while (read(fd, &de, sizeof(de)) == sizeof(de))
         {
+            if (strcmp(".", de.name) == 0 || strcmp("..", de.name) == 0)
+            {
+                printf("not recurse into . and ..\n");
+                continue;
+            }
             printf("inum:%d name:%s \n", de.inum, de.name);
             // 拼接path，然后递归find
-            strcpy(buf,path);
+            strcpy(buf, path);
             char *p = buf + strlen(buf);
             *p++ = '/';
             memmove(p, de.name, DIRSIZ);
-            printf("append file name:%s",buf);
+            printf("append file name:%s", buf);
         }
         break;
     }
