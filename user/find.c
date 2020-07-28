@@ -60,12 +60,21 @@ void find(char *path, char *name)
             }
             printf("inum:%d name:%s \n", de.inum, de.name);
             // 拼接path，然后递归find
-            strcpy(buf, path);
-            char *p = buf + strlen(buf);
+            char *p;
+            if (strcmp(".", path) != 0)
+            {
+                //current path is not .
+                strcpy(buf, path);
+                p = buf + strlen(buf);
+            }
+            else
+            {
+                p = buf;
+            }
             *p++ = '/';
             memmove(p, de.name, DIRSIZ);
             printf("append file name:%s\n", buf);
-            find(buf,name);
+            find(buf, name);
         }
         break;
     }
