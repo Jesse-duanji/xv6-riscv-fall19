@@ -61,8 +61,7 @@ void find(char *path, char *name)
             // 拼接path，然后递归find
             strcpy(buf,path);
             char *p = buf + strlen(buf);
-            p++;
-            *p = "/";
+            *p++ = '/';
             memmove(p, de.name, DIRSIZ);
             printf("append file name:%s",buf);
         }
