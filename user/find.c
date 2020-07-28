@@ -29,6 +29,7 @@ void find(char *path, char *name)
     {
     case T_FILE:
     {
+        printf("%s is a file",path);
         // compare with name directly
         char *p;
         for (p = path + strlen(path); p >= path && *p != '/'; p--)
@@ -44,6 +45,7 @@ void find(char *path, char *name)
     break;
     case T_DIR:
         //check file
+        printf("%s is a directory",path);
         if (strcmp(".", path) == 0 || strcmp("..", path) == 0)
         {
             printf("not recurse into . and ..");
