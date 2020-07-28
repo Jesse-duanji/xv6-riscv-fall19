@@ -66,12 +66,12 @@ void find(char *path, char *name)
                 //current path is not .
                 strcpy(buf, path);
                 p = buf + strlen(buf);
+                *p++ = '/';
             }
             else
             {
                 p = buf;
             }
-            *p++ = '/';
             memmove(p, de.name, DIRSIZ);
             printf("append file name:%s\n", buf);
             find(buf, name);
