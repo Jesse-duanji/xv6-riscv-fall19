@@ -64,7 +64,8 @@ void find(char *path, char *name)
             char *p = buf + strlen(buf);
             *p++ = '/';
             memmove(p, de.name, DIRSIZ);
-            printf("append file name:%s", buf);
+            printf("append file name:%s\n", buf);
+            find(buf,name);
         }
         break;
     }
