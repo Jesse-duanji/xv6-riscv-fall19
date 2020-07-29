@@ -22,7 +22,7 @@ void find(char *path, char *name)
         return;
     }
     // printf("dev:%d info:%d type:%d nlink:%d size:%d\n", st.dev, st.ino,
-        //    st.type, st.nlink, st.size);
+    //    st.type, st.nlink, st.size);
 
     struct dirent de;
     switch (st.type)
@@ -48,36 +48,38 @@ void find(char *path, char *name)
     case T_DIR:
         //check file
         // printf("%s is a directory\n", path);
-
-        char buf[512];
-        //find recursively
-        while (read(fd, &de, sizeof(de)) == sizeof(de))
         {
-            if(de.inum==0){
-                continue;
-            }
-            if (strcmp(".", de.name) == 0 || strcmp("..", de.name) == 0)
+            char buf[512];
+            //find recursively
+            while (read(fd, &de, sizeof(de)) == sizeof(de))
             {
-                printf("not recurse into . and ..\n");
-                continue;
+                if (de.inum == 0)
+                {
+                    continue;
+                }
+                if (strcmp(".", de.name) == 0 || strcmp("..", de.name) == 0)
+                {
+                    printf("not recurse into . and ..\n");
+                    continue;
+                }
+                // printf("inum:%d name:%s \n", de.inum, de.name);
+                // 拼接path，然后递归find
+                char *p;
+                if (strcmp(".", path) != 0)
+                {
+                    //current path is not .
+                    strcpy(buf, path);
+                    p = buf + strlen(buf);
+                    *p++ = '/';
+                }
+                else
+                {
+                    p = buf;
+                }
+                memmove(p, de.name, DIRSIZ);
+                // printf("append file name:%s length:%d\n", buf, strlen(buf));
+                find(buf, name);
             }
-            // printf("inum:%d name:%s \n", de.inum, de.name);
-            // 拼接path，然后递归find
-            char *p;
-            if (strcmp(".", path) != 0)
-            {
-                //current path is not .
-                strcpy(buf, path);
-                p = buf + strlen(buf);
-                *p++ = '/';
-            }
-            else
-            {
-                p = buf;
-            }
-            memmove(p, de.name, DIRSIZ);
-            // printf("append file name:%s length:%d\n", buf, strlen(buf));
-            find(buf, name);
         }
         break;
     }
