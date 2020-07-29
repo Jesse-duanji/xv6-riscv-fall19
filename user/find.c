@@ -53,6 +53,9 @@ void find(char *path, char *name)
         //find recursively
         while (read(fd, &de, sizeof(de)) == sizeof(de))
         {
+            if(de.inum==0){
+                continue;
+            }
             if (strcmp(".", de.name) == 0 || strcmp("..", de.name) == 0)
             {
                 printf("not recurse into . and ..\n");
