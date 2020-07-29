@@ -5,19 +5,19 @@
 
 void find(char *path, char *name)
 {
-    printf("find from path:%s\n", path);
+    printf("find invoked path:%s name:%s\n", path, name);
     struct stat st;
     int fd;
     if ((fd = open(path, 0)) < 0)
     {
-        fprintf(2, "find: can't open %s", path);
+        fprintf(2, "find: can't open %s\s", path);
         close(fd);
         return;
     }
 
     if (fstat(fd, &st) < 0)
     {
-        fprintf(2, "find: can't stat %s", path);
+        fprintf(2, "find: can't stat %s\s", path);
         close(fd);
         return;
     }
@@ -73,11 +73,12 @@ void find(char *path, char *name)
                 p = buf;
             }
             memmove(p, de.name, DIRSIZ);
-            printf("append file name:%s length:%d\n", buf,strlen(buf));
+            printf("append file name:%s length:%d\n", buf, strlen(buf));
             find(buf, name);
         }
         break;
     }
+    close(fd);
 }
 
 int main(int argc, char *argv[])
