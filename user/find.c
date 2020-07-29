@@ -59,7 +59,7 @@ void find(char *path, char *name)
                 }
                 if (strcmp(".", de.name) == 0 || strcmp("..", de.name) == 0)
                 {
-                    printf("not recurse into . and ..\n");
+                    // printf("not recurse into . and ..\n");
                     continue;
                 }
                 // printf("inum:%d name:%s \n", de.inum, de.name);
