@@ -36,7 +36,7 @@ void find(char *path, char *name)
             ;
         p++; //find first character after last slash
 
-        printf("p is %s name is %s", p, name);
+        printf("p is %s name is %s\n", p, name);
 
         if (strcmp(p, name) == 0)
         {
@@ -73,7 +73,7 @@ void find(char *path, char *name)
                 p = buf;
             }
             memmove(p, de.name, DIRSIZ);
-            printf("append file name:%s\n", buf);
+            printf("append file name:%s length:%d\n", buf,strlen(buf));
             find(buf, name);
         }
         break;
