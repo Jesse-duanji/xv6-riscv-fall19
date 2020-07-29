@@ -5,7 +5,7 @@
 
 void find(char *path, char *name)
 {
-    printf("find invoked path:%s name:%s\n", path, name);
+    // printf("find invoked path:%s name:%s\n", path, name);
     struct stat st;
     int fd;
     if ((fd = open(path, 0)) < 0)
@@ -21,22 +21,22 @@ void find(char *path, char *name)
         close(fd);
         return;
     }
-    printf("dev:%d info:%d type:%d nlink:%d size:%d\n", st.dev, st.ino,
-           st.type, st.nlink, st.size);
+    // printf("dev:%d info:%d type:%d nlink:%d size:%d\n", st.dev, st.ino,
+        //    st.type, st.nlink, st.size);
 
     struct dirent de;
     switch (st.type)
     {
     case T_FILE:
     {
-        printf("%s is a file\n", path);
+        // printf("%s is a file\n", path);
         // compare with name directly
         char *p;
         for (p = path + strlen(path); p >= path && *p != '/'; p--)
             ;
         p++; //find first character after last slash
 
-        printf("p is %s name is %s\n", p, name);
+        // printf("p is %s name is %s\n", p, name);
 
         if (strcmp(p, name) == 0)
         {
@@ -47,7 +47,7 @@ void find(char *path, char *name)
     break;
     case T_DIR:
         //check file
-        printf("%s is a directory\n", path);
+        // printf("%s is a directory\n", path);
 
         char buf[512];
         //find recursively
@@ -61,7 +61,7 @@ void find(char *path, char *name)
                 printf("not recurse into . and ..\n");
                 continue;
             }
-            printf("inum:%d name:%s \n", de.inum, de.name);
+            // printf("inum:%d name:%s \n", de.inum, de.name);
             // 拼接path，然后递归find
             char *p;
             if (strcmp(".", path) != 0)
@@ -76,7 +76,7 @@ void find(char *path, char *name)
                 p = buf;
             }
             memmove(p, de.name, DIRSIZ);
-            printf("append file name:%s length:%d\n", buf, strlen(buf));
+            // printf("append file name:%s length:%d\n", buf, strlen(buf));
             find(buf, name);
         }
         break;
