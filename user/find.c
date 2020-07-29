@@ -10,14 +10,14 @@ void find(char *path, char *name)
     int fd;
     if ((fd = open(path, 0)) < 0)
     {
-        fprintf(2, "find: can't open %s\s", path);
+        fprintf(2, "find: can't open %s\n", path);
         close(fd);
         return;
     }
 
     if (fstat(fd, &st) < 0)
     {
-        fprintf(2, "find: can't stat %s\s", path);
+        fprintf(2, "find: can't stat %s\n", path);
         close(fd);
         return;
     }
