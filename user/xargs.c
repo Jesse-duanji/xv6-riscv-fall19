@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     char buf[512];
-    char *c;
+    char *c = 0;
     int i = 0; // current cursor
     while (read(0, c, 1) > 0)
     {
