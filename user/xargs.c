@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
             {
                 buf[i] = '\0';
                 printf("line is %s", buf);
+                i = 0;
             }
         }
         else
