@@ -18,13 +18,13 @@ int main(int argc, char *argv[])
             else
             {
                 buf[i] = '\0';
-                printf("line is %s", buf);
+                printf("line is %s\n", buf);
                 i = 0;
             }
         }
         else
         {
-            fprintf(2, "size of line is too long!");
+            fprintf(2, "size of line is too long!\n");
             return -1;
         }
     }
