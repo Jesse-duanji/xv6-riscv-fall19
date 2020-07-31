@@ -52,9 +52,24 @@ int main(int argc, char *argv[])
                         paramBuf[paramBufIndex++] = buf[i];
                     }
                 }
+
+                //start to execute command
+                int pid = fork();
+                if (pid > 0)
+                {
+                    wait();
+                }
+                else
+                {
+                    exec(params[0], params + 1);
+                }
+
                 for (int i = 0; i < MAXARG; i++)
                 {
-                    printf("param:%s\n", params[i]);
+                    if (params[i] != 0)
+                    {
+                        printf("param:%s\n", params[i]);
+                    }
                 }
 
                 i = 0;
