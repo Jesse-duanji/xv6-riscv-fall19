@@ -19,6 +19,14 @@ int main(int argc, char *argv[])
             {
                 buf[i] = '\0';
                 printf("line is %s\n", buf);
+
+                //fork and execute command
+                char *params[MAXARG];
+                for (int i = 1; i < sizeof(argv); i++)
+                {
+                    printf("%d param is %s\n", i, argv[i]);
+                }
+
                 i = 0;
             }
         }
