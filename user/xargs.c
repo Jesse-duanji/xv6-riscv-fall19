@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    exec(params[0], params + 1);
+                    exec(params[0], params);
                 }
 
                 for (int i = 0; i < MAXARG; i++)
