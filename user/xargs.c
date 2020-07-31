@@ -53,6 +53,9 @@ int main(int argc, char *argv[])
                         paramBuf[paramBufIndex++] = buf[i];
                     }
                 }
+                //final params
+                paramBuf[paramBufIndex] = '\0';
+                params[paramIndex++] = paramBuf;
 
                 //start to execute command
                 int pid = fork();
@@ -65,13 +68,13 @@ int main(int argc, char *argv[])
                     exec(params[0], params);
                 }
 
-                for (int i = 0; i < MAXARG; i++)
-                {
-                    if (params[i] != 0)
-                    {
-                        printf("param:%s\n", params[i]);
-                    }
-                }
+                // for (int i = 0; i < MAXARG; i++)
+                // {
+                    // if (params[i] != 0)
+                    // {
+                        // printf("param:%s\n", params[i]);
+                    // }
+                // }
 
                 i = 0;
             }
