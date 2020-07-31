@@ -23,14 +23,14 @@ int main(int argc, char *argv[])
             else
             {
                 buf[i] = '\0';
-                printf("line is %s\n", buf);
+                // printf("line is %s\n", buf);
 
                 //fork and execute command
                 char *params[MAXARG];
                 int paramIndex = 0;
                 for (int i = 1; i < argc; i++)
                 {
-                    printf("%d param is %s\n", i, argv[i]);
+                    // printf("%d param is %s\n", i, argv[i]);
                     params[paramIndex++] = argv[i];
                 }
 
