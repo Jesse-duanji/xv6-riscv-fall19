@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
                     {
                         //new param end
                         paramBuf[paramBufIndex] = '\0';
-                        params[paramIndex] = paramBuf;
+                        params[paramIndex++] = paramBuf;
                         paramBuf = malloc(sizeof(char) * 512);
                         paramBufIndex = 0;
                     }
