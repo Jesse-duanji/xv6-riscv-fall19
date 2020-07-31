@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
                 int paramBufIndex = 0;
                 for (int i = 0; i < strlen(buf); i++)
                 {
+                    printf("char %c",buf[i]);
                     if (buf[i] == ' ')
                     {
                         //new param end
