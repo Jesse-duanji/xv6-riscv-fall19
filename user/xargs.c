@@ -15,18 +15,46 @@ int main(int argc, char *argv[])
             {
                 buf[i++] = *c;
             }
+            else if (*c == 04)
+            {
+                printf("ctrl + D pressed\n");
+                break;
+            }
             else
             {
                 buf[i] = '\0';
                 printf("line is %s\n", buf);
 
                 //fork and execute command
-                // char *params[MAXARG];
-                // int paramIndex = 0;
+                char *params[MAXARG];
+                int paramIndex = 0;
                 for (int i = 1; i < argc; i++)
                 {
                     printf("%d param is %s\n", i, argv[i]);
-                    // params[paramIndex++] = argv[i];
+                    params[paramIndex++] = argv[i];
+                }
+
+                //continue parse params
+                char *paramBuf = malloc(sizeof(char) * 512);
+                int paramBufIndex = 0;
+                for (int i = 0; i < strlen(buf); i++)
+                {
+                    if (buf[i] == ' ')
+                    {
+                        //new param end
+                        paramBuf[paramBufIndex] = '\0';
+                        params[paramIndex] = paramBuf;
+                        paramBuf = malloc(sizeof(char) * 512);
+                        paramBufIndex = 0;
+                    }
+                    else
+                    {
+                        paramBuf[paramBufIndex++] = buf[i];
+                    }
+                }
+                for (int i = 0; i < MAXARG; i++)
+                {
+                    printf("param:%s\n", params[i]);
                 }
 
                 i = 0;
