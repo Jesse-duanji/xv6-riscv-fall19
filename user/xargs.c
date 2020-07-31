@@ -22,9 +22,11 @@ int main(int argc, char *argv[])
 
                 //fork and execute command
                 char *params[MAXARG];
+                int paramIndex = 0;
                 for (int i = 1; i < sizeof(argv); i++)
                 {
                     printf("%d param is %s\n", i, argv[i]);
+                    params[paramIndex++] = argv[i];
                 }
 
                 i = 0;
